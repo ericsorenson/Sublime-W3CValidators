@@ -9,11 +9,15 @@ Unlike similar packages, curl is not required!
 
 ##Installation
 
-Via the [Sublime Package Manager](http://wbond.net/sublime_packages/package_control):
+Via the [Sublime Package Manager](http://wbond.net/sublime_packages/package_control): Coming soon!
 
+<!--
 * `Ctrl+Shift+P` or `Cmd+Shift+P` in Linux / Windows / OS X
 * Type `install`, select `Package Control: Install Package`
 * Select `W3CValidators`
+-->
+
+Manually: clone this project into `Sublime Text 2/Packages`
 
 ##Usage
 
