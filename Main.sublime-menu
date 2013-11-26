@@ -1,0 +1,37 @@
+[
+  {
+    "id": "tools",
+    "children": [
+      {
+        "id": "validators",
+        "caption": "W3C Validators",
+        "children": [
+          {
+            "caption": "HTML 5",
+            "command": "validatehtml5"
+          },
+          {
+            "caption": "HTML 4.01 Strict",
+            "command": "validatehtml4strict"
+          },
+          {
+            "caption": "HTML 4.01 Transitional",
+            "command": "validatehtml4transitional"
+          },
+          {
+            "caption": "SVG 1.1",
+            "command": "validatesvg11"
+          },
+          {
+            "caption": "SVG 1.1 Tiny",
+            "command": "validatesvg11tiny"
+          },
+          {
+            "caption": "SVG 1.1 Basic",
+            "command": "validatesvg11basic"
+          }
+        ]
+      }
+    ]
+  }
+]
