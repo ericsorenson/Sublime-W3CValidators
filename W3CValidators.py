@@ -56,6 +56,7 @@ class Validatesvg11basicCommand(AbstractValidator):
   def run(self, edit):
     self.validate('SVG 1.1 Basic', self.markupValidatorUrl)
 
+# TODO: CSS Validation
 class Validatecss3Command(AbstractValidator):
 
   def run(self, edit):
