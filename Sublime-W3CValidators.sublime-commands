@@ -1,0 +1,26 @@
+[
+  {
+    "caption": "W3C Validators: Validate HTML5",
+    "command": "validatehtml5"
+  },
+  {
+    "caption": "W3C Validators: Validate HTML 4.01 Strict",
+    "command": "validatehtml4strict"
+  },
+  {
+    "caption": "W3C Validators: Validate HTML 4.01 Transitional",
+    "command": "validatehtml4transitional"
+  },
+  {
+    "caption": "W3C Validators: Validate SVG 1.1",
+    "command": "validatesvg11"
+  },
+  {
+    "caption": "W3C Validators: Validate SVG 1.1 Tiny",
+    "command": "validatesvg11tiny"
+  },
+  {
+    "caption": "W3C Validators: Validate SVG 1.1 Basic",
+    "command": "validatesvg11basic"
+  }
+]
