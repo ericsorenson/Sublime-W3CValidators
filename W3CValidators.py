@@ -45,8 +45,8 @@ class AbstractValidator(sublime_plugin.TextCommand):
             message_contents = message_contents.join(formatted_messages)
 
         prefs = sublime.load_settings('Sublime-W3CValidators.sublime-settings')
-        message_pref = prefs.get('results_in_dialog', True)
-        if message_pref:
+        show_dialog = prefs.get('results_in_dialog', True)
+        if show_dialog:
             sublime.message_dialog(message_contents)
         else:
             self.view.window().new_file().insert(edit, 0, message_contents)
