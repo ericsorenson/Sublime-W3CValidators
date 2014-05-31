@@ -46,6 +46,21 @@
             "caption": "W3C Validators",
             "children": [
               {
+                "command": "open_file", "args":
+                {
+                  "file": "${packages}/Sublime-W3CValidators/Sublime-W3CValidators.sublime-settings"
+                },
+                "caption": "Settings – Default"
+              },
+              {
+                "command": "open_file", "args":
+                {
+                  "file": "${packages}/User/Sublime-W3CValidators.sublime-settings"
+                },
+                "caption": "Settings – User"
+              },
+              { "caption": "-" },
+              {
                   "command": "open_file",
                   "args": {
                       "file": "${packages}/Sublime-W3CValidators/Default (Windows).sublime-keymap",
