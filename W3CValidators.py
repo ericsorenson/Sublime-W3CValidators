@@ -44,7 +44,8 @@ class AbstractValidator(sublime_plugin.TextCommand):
                     'Line %s: %s\n\n' % (message['lastLine'], message['message']))
             message_contents = message_contents.join(formatted_messages)
 
-        message_pref = sublime.load_settings('Sublime-W3CValidators.sublime-settings').get('results_in_dialog', True)
+        prefs = sublime.load_settings('Sublime-W3CValidators.sublime-settings')
+        message_pref = prefs.get('results_in_dialog', True)
         if message_pref:
             sublime.message_dialog(message_contents)
         else:
