@@ -18,7 +18,7 @@ class AbstractValidator(sublime_plugin.TextCommand):
     markup_validator_url = 'http://validator.w3.org/check'
     css_validator_url = 'http://jigsaw.w3.org/css-validator/validator'
 
-    def validate(self, format, validator_url):
+    def validate(self, edit, format, validator_url):
         region = sublime.Region(0, self.view.size())
         file_contents = self.view.substr(region)
         params = {'fragment': file_contents, 'doctype': format, 'output': 'json'}
@@ -43,40 +43,46 @@ class AbstractValidator(sublime_plugin.TextCommand):
                 formatted_messages.append(
                     'Line %s: %s\n\n' % (message['lastLine'], message['message']))
             message_contents = message_contents.join(formatted_messages)
-        sublime.message_dialog(message_contents)
+
+        prefs = sublime.load_settings('Sublime-W3CValidators.sublime-settings')
+        show_dialog = prefs.get('results_in_dialog', True)
+        if show_dialog:
+            sublime.message_dialog(message_contents)
+        else:
+            self.view.window().new_file().insert(edit, 0, message_contents)
 
 
 class Validatehtml5Command(AbstractValidator):
     def run(self, edit):
-        self.validate('HTML5', self.markup_validator_url)
+        self.validate(edit, 'HTML5', self.markup_validator_url)
 
 
 class Validatehtml4strictCommand(AbstractValidator):
     def run(self, edit):
-        self.validate('HTML 4.01 Strict', self.markup_validator_url)
+        self.validate(edit, 'HTML 4.01 Strict', self.markup_validator_url)
 
 
 class Validatehtml4transitionalCommand(AbstractValidator):
     def run(self, edit):
-        self.validate('HTML 4.01 Transitional', self.markup_validator_url)
+        self.validate(edit, 'HTML 4.01 Transitional', self.markup_validator_url)
 
 
 class Validatesvg11Command(AbstractValidator):
     def run(self, edit):
-        self.validate('SVG 1.1', self.markup_validator_url)
+        self.validate(edit, 'SVG 1.1', self.markup_validator_url)
 
 
 class Validatesvg11tinyCommand(AbstractValidator):
     def run(self, edit):
-        self.validate('SVG 1.1 Tiny', self.markup_validator_url)
+        self.validate(edit, 'SVG 1.1 Tiny', self.markup_validator_url)
 
 
 class Validatesvg11basicCommand(AbstractValidator):
     def run(self, edit):
-        self.validate('SVG 1.1 Basic', self.markup_validator_url)
+        self.validate(edit, 'SVG 1.1 Basic', self.markup_validator_url)
 
 
 # TODO: CSS Validation
 class Validatecss3Command(AbstractValidator):
     def run(self, edit):
-        self.validate('css3', self.css_validator_url)
+        self.validate(edit, 'css3', self.css_validator_url)

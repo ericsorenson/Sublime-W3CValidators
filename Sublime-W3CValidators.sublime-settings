@@ -1,0 +1,5 @@
+{
+  // Set this to true to display validation results in a dialog or false to
+  // print the results in a new buffer.
+  "results_in_dialog": true
+}
