@@ -32,10 +32,10 @@ class AbstractValidator(sublime_plugin.TextCommand):
             output = output.decode('utf-8')
         results = json.loads(output)
 
-        message_contents = ''
         if not results['messages']:
-            message_contents = 'This document was successfully checked as %s!' % format
+            sublime.message_dialog('This document was successfully checked as %s!' % format)
         else:
+            message_contents = ''
             formatted_messages = []
             formatted_messages.append(
                 'Errors found while checking this document as %s!\n\n' % format)
@@ -43,13 +43,10 @@ class AbstractValidator(sublime_plugin.TextCommand):
                 formatted_messages.append(
                     'Line %s: %s\n\n' % (message['lastLine'], message['message']))
             message_contents = message_contents.join(formatted_messages)
-
-        prefs = sublime.load_settings('Sublime-W3CValidators.sublime-settings')
-        show_dialog = prefs.get('results_in_dialog', True)
-        if show_dialog:
-            sublime.message_dialog(message_contents)
-        else:
-            self.view.window().new_file().insert(edit, 0, message_contents)
+            output = sublime.active_window().new_file()
+            output.set_scratch(True)
+            output.set_name('W3C Validation Errors')
+            output.insert(edit, 0, message_contents)
 
 
 class Validatehtml5Command(AbstractValidator):
