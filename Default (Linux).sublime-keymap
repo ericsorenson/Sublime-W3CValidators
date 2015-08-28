@@ -3,6 +3,6 @@
     "keys": [
       "super+ctrl+v"
     ],
-    "command": "validate"
+    "command": "validatehtml5"
   }
 ]
