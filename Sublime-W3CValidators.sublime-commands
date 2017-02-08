@@ -22,5 +22,9 @@
   {
     "caption": "W3C Validators: Validate SVG 1.1 Basic",
     "command": "validatesvg11basic"
+  },
+  {
+    "caption": "W3C Validators: Validate CSS 3",
+    "command": "validatecss3"
   }
 ]
