@@ -105,7 +105,31 @@ class Validatesvg11basicCommand(AbstractValidator):
         self.validate(edit, 'SVG 1.1 Basic', self.markup_validator_url)
 
 
-# TODO: CSS Validation
 class Validatecss3Command(AbstractValidator):
     def run(self, edit):
-        self.validate(edit, 'css3', self.css_validator_url)
+        region = sublime.Region(0, self.view.size())
+        file_contents = self.view.substr(region).encode('utf-8').strip()
+
+        params = dict()
+        params['text']  = file_contents
+        params['output'] = "application/json"
+        params['profile']= "css3"
+        params['lang']= "en"
+
+        results = requests.get(self.css_validator_url, params=params).json()
+
+        if results['cssvalidation']["result"]["errorcount"] == 0:
+            sublime.message_dialog('This document was successfully checked as CSS3')
+        else:
+            message_contents = ''
+            formatted_messages = []
+            formatted_messages.append(
+                'Errors found while checking this document as CSS3:\n\n')
+            for error in results["cssvalidation"]["errors"]:
+                formatted_messages.append(
+                    'Line %s: %s\n\n' % (error['line'], error['message']))
+            message_contents = message_contents.join(formatted_messages)
+            output = sublime.active_window().new_file()
+            output.set_scratch(True)
+            output.set_name('W3C Validation Errors')
+            output.insert(edit, 0, message_contents)

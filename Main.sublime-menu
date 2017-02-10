@@ -29,6 +29,10 @@
           {
             "caption": "SVG 1.1 Basic",
             "command": "validatesvg11basic"
+          },
+          {
+            "caption": "CSS 3",
+            "command": "validatecss3"
           }
         ]
       }
